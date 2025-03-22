@@ -1,12 +1,13 @@
-import { google } from "@ai-sdk/google";
-import { text } from "@ai-sdk/text";
+import { google } from "@ai-sdk/google"
+import { text } from "@ai-sdk/text"
+import { GoogleGenerativeAI } from "@google/generative-ai"
 
 // This is a mock implementation since we'll need a real API key to use Gemini
 // In a real implementation, this would use a proper API key stored in environment variables
 export const generateCarResponse = async (prompt: string): Promise<string> => {
-  try {
-    // Simulate API call delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+ try {
+   // Simulate API call delay
+   await new Promise((resolve) => setTimeout(resolve, 1000))
 
     // Real implementation would use:
     // const response = await google.run(text.generate({
@@ -15,7 +16,6 @@ export const generateCarResponse = async (prompt: string): Promise<string> => {
     //   maxTokens: 1000,
     // }));
     // return response.value;
-    const { GoogleGenerativeAI } = require("@google/generative-ai");
 
     const genAI = new GoogleGenerativeAI(
       "AIzaSyBcm8k2y91mHOE8td1d8x7g_3kOW_tofdY",
