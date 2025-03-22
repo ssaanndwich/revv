@@ -27,7 +27,7 @@ export const generateCarResponse = async (prompt: string): Promise<string> => {
     });
 
     const result = await model.generateContent(prompt);
-    console.log(result.response.text());
+    return result.response.text()
   } catch (error) {
     console.error("Error generating response:", error);
     return "I'm sorry, I couldn't process your request at the moment. Please try again later.";
