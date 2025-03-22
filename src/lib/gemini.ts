@@ -1,40 +1,13 @@
-
-import { google } from '@ai-sdk/google';
-import { text } from '@ai-sdk/text';
+import { google } from "@ai-sdk/google";
+import { text } from "@ai-sdk/text";
 
 // This is a mock implementation since we'll need a real API key to use Gemini
 // In a real implementation, this would use a proper API key stored in environment variables
 export const generateCarResponse = async (prompt: string): Promise<string> => {
   try {
     // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // This is a simplified mock response system
-    // In a real application, we would connect to the actual Gemini API
-    const lowerPrompt = prompt.toLowerCase();
-    
-    if (lowerPrompt.includes('hello') || lowerPrompt.includes('hi')) {
-      return "Hello! I'm your car assistant. How can I help you with your automotive questions today?";
-    }
-    
-    if (lowerPrompt.includes('maintenance') || lowerPrompt.includes('service')) {
-      return "Regular maintenance is crucial for your car's longevity. This typically includes oil changes every 5,000-7,500 miles, tire rotations, fluid checks, and inspecting brakes and filters. Would you like more specific maintenance advice?";
-    }
-    
-    if (lowerPrompt.includes('best car') || lowerPrompt.includes('recommend')) {
-      return "The 'best' car depends on your specific needs. Consider factors like your budget, daily use (commuting vs. family), fuel efficiency preferences, desired features, and whether you prefer new or used. Can you tell me more about what you're looking for?";
-    }
-    
-    if (lowerPrompt.includes('electric') || lowerPrompt.includes('ev')) {
-      return "Electric vehicles offer lower operating costs, zero emissions, and instant torque for responsive acceleration. Popular models include the Tesla Model 3, Ford Mustang Mach-E, and Hyundai IONIQ 5. They typically range from 200-350 miles per charge. Would you like to know more?";
-    }
-    
-    if (lowerPrompt.includes('mpg') || lowerPrompt.includes('fuel efficiency')) {
-      return "The most fuel-efficient non-hybrid cars typically get 35-40 MPG highway. Hybrids can achieve 50+ MPG, while plug-in hybrids may rate over 100 MPGe when accounting for electric range. Would you like specific model recommendations?";
-    }
-    
-    return "I understand you're asking about cars. Could you provide more details about your question so I can give you a more specific and helpful response?";
-    
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     // Real implementation would use:
     // const response = await google.run(text.generate({
     //   model: 'models/gemini-1.5-pro',
@@ -42,8 +15,21 @@ export const generateCarResponse = async (prompt: string): Promise<string> => {
     //   maxTokens: 1000,
     // }));
     // return response.value;
+    const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+    const genAI = new GoogleGenerativeAI(
+      "AIzaSyBcm8k2y91mHOE8td1d8x7g_3kOW_tofdY",
+    );
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.0-flash",
+      systemInstruction:
+        "Act as an auto mechanic advisor for your typical car owner who knows almost nothing about cars. The car owner will give you the year, make, and model of their car, and describe the issue that they are having or something they would like to know. They might also provide an OBD code for their car. Tell them very simply the following things: 1. if their problem is an emergency or urgent, or if it is a safety risk and they need to get it fixed right away. 2. provide a cost estimation for the fix. 3. if the problem can be fixed on their own or if they should take it to a mechanic (assume that the user has no specialty skillset). 4. the risk of fixing it themselves. 5. long term costs and risks associated if they do not take the vehicle to get fixed 6. if provided with an OBD code, identify if the code is associated with a problem in the chassis, powertrain, electrical, body and paint, or general issue",
+    });
+
+    const result = await model.generateContent(prompt);
+    console.log(result.response.text());
   } catch (error) {
-    console.error('Error generating response:', error);
+    console.error("Error generating response:", error);
     return "I'm sorry, I couldn't process your request at the moment. Please try again later.";
   }
 };
