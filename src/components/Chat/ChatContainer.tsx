@@ -8,13 +8,16 @@ import { Sparkles } from 'lucide-react';
 
 interface ChatContainerProps {
   className?: string;
+  carInfo?: any;
 }
 
-export const ChatContainer: React.FC<ChatContainerProps> = ({ className }) => {
+export const ChatContainer: React.FC<ChatContainerProps> = ({ className, carInfo }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: 'Hi there! I\'m your automotive assistant powered by Gemini AI. Ask me anything about cars, maintenance, buying advice, or technical specifications.',
+      content: carInfo 
+        ? `Hi there! I'm your automotive assistant. I see you're asking about your ${carInfo.year || ''} ${carInfo.make || ''} ${carInfo.model || ''} ${carInfo.vin ? `(VIN: ${carInfo.vin})` : ''}. What problem are you experiencing?`
+        : 'Hi there! I\'m your automotive assistant powered by Gemini AI. Ask me anything about cars, maintenance, buying advice, or technical specifications.',
       role: 'assistant',
       timestamp: new Date()
     }

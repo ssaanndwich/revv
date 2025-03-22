@@ -5,10 +5,11 @@ import { CarForm } from '@/components/CarForm/CarForm';
 
 const Index = () => {
   const [carInfo, setCarInfo] = useState<any>(null);
+  const [showChat, setShowChat] = useState(false);
 
   const handleCarSubmit = (data: any) => {
     setCarInfo(data);
-    // You can add additional logic here to handle the car information
+    setShowChat(true);
   };
 
   return (
@@ -23,13 +24,15 @@ const Index = () => {
           </p>
         </div>
 
-        <div className="flex justify-center mb-8">
-          <CarForm onSubmit={handleCarSubmit} />
-        </div>
-        
-        <div className="h-[600px] w-full rounded-2xl overflow-hidden">
-          <ChatContainer className="w-full h-full" />
-        </div>
+        {!showChat ? (
+          <div className="flex justify-center mb-8">
+            <CarForm onSubmit={handleCarSubmit} />
+          </div>
+        ) : (
+          <div className="h-[600px] w-full rounded-2xl overflow-hidden">
+            <ChatContainer className="w-full h-full" carInfo={carInfo} />
+          </div>
+        )}
         
         <div className="text-center text-sm text-muted-foreground">
           <p>Powered by Gemini AI • Designed with simplicity in mind</p>
