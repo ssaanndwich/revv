@@ -1,22 +1,26 @@
-
-import React from 'react';
-import { cn } from '@/lib/utils';
+import React from "react"
+import { cn } from "@/lib/utils"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 
 export interface Message {
-  id: string;
-  content: string;
-  role: 'user' | 'assistant';
-  timestamp: Date;
+  id: string
+  content: string
+  role: "user" | "assistant"
+  timestamp: Date
 }
 
 interface ChatMessageProps {
-  message: Message;
-  isLoading?: boolean;
+  message: Message
+  isLoading?: boolean
 }
 
-export const ChatMessage: React.FC<ChatMessageProps> = ({ message, isLoading }) => {
-  const isUser = message.role === 'user';
-  
+export const ChatMessage: React.FC<ChatMessageProps> = ({
+  message,
+  isLoading,
+}) => {
+  const isUser = message.role === "user"
+
   return (
     <div
       className={cn(
@@ -27,34 +31,47 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message, isLoading }) 
       <div
         className={cn(
           "max-w-[80%] md:max-w-[70%] p-4 rounded-2xl",
-          isUser 
-            ? "bg-primary text-primary-foreground rounded-tr-none" 
+          isUser
+            ? "bg-primary text-primary-foreground rounded-tr-none"
             : "glass-panel rounded-tl-none",
           isLoading && "animate-pulse-soft"
         )}
       >
-        <p className="text-sm md:text-base leading-relaxed">{message.content}</p>
-        <div 
+        <div className="text-sm md:text-base leading-relaxed prose prose-sm dark:prose-invert max-w-none">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {message.content}
+          </ReactMarkdown>
+        </div>
+        <div
           className={cn(
             "text-xs mt-1 opacity-70",
             isUser ? "text-right" : "text-left"
           )}
         >
-          {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          {message.timestamp.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const LoadingIndicator = () => (
   <div className="flex w-full mb-4 justify-start animate-fade-in">
     <div className="glass-panel p-4 rounded-2xl rounded-tl-none">
       <div className="flex space-x-1">
         <div className="w-2 h-2 bg-muted-foreground rounded-full animate-pulse"></div>
-        <div className="w-2 h-2 bg-muted-foreground rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-        <div className="w-2 h-2 bg-muted-foreground rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+        <div
+          className="w-2 h-2 bg-muted-foreground rounded-full animate-pulse"
+          style={{ animationDelay: "0.2s" }}
+        ></div>
+        <div
+          className="w-2 h-2 bg-muted-foreground rounded-full animate-pulse"
+          style={{ animationDelay: "0.4s" }}
+        ></div>
       </div>
     </div>
   </div>
-);
+)
