@@ -37,7 +37,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
           isLoading && "animate-pulse-soft"
         )}
       >
-        <div className="text-sm md:text-base leading-relaxed prose prose-sm dark:prose-invert max-w-none">
+        <div className="text-sm md:text-base leading-relaxed max-w-none">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {message.content}
           </ReactMarkdown>
