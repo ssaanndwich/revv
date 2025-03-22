@@ -17,10 +17,10 @@ const Index = () => {
       <div className="w-full max-w-4xl mx-auto space-y-8">
         <div className="text-center space-y-2 mb-8">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Auto Genius
+            Revv
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Your AI-powered automotive assistant. Enter your vehicle information to get started.
+            Your AI-powered car mechanic assistant. Enter your vehicle information to get started.
           </p>
         </div>
 
