@@ -26,7 +26,7 @@ export const generateCarResponse = async (
     // return response.value;
 
     const genAI = new GoogleGenerativeAI(
-      "AIzaSyBcm8k2y91mHOE8td1d8x7g_3kOW_tofdY"
+      {key}
     )
 
     // Create a context string with car information if available
