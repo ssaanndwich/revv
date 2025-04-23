@@ -1,16 +1,9 @@
-# Welcome to your Lovable project
+# Welcome to Revv
 
 ## Project info
-
-**URL**: https://lovable.dev/projects/db3f79c4-cafc-4620-8b93-f7f22009de53
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/db3f79c4-cafc-4620-8b93-f7f22009de53) and start prompting.
+[Design Case Study](https://ssaann.webflow.io/work/revv)
+[Hackathon Results](https://lovable.dev/projects/db3f79c4-cafc-4620-8b93-f7f22009de53)
+[Web Project](https://lovable.dev/projects/db3f79c4-cafc-4620-8b93-f7f22009de53)
 
 Changes made via Lovable will be committed automatically to this repo.
 
