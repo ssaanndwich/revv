@@ -2,7 +2,9 @@
 
 ## Project info
 [Design Case Study](https://ssaann.webflow.io/work/revv)
+
 [Hackathon Results](https://lovable.dev/projects/db3f79c4-cafc-4620-8b93-f7f22009de53)
+
 [Web Project](https://lovable.dev/projects/db3f79c4-cafc-4620-8b93-f7f22009de53)
 
 Changes made via Lovable will be committed automatically to this repo.
